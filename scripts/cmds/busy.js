@@ -8,7 +8,7 @@ module.exports = {
         version: "1.5.0",
         author: "SK-SIDDIK-KHAN",
         countDown: 5,
-        role: 1,
+        role: 2,
         usePrefix: true,
     description: {
             vi: "bật chế độ không làm phiền, khi bạn được tag bot sẽ thông báo",

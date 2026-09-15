@@ -164,7 +164,7 @@ async function syncDashBoardData(message, dashBoardModel, getLang) {
 	try {
 		await sequelize.transaction(async (transaction) => {
 			for (const dashboard of oldDashBoardData) {
-				const dashboardIndex = global.db.allDashBoardData.findIndex(item => item.email == dashboard.email);
+				const dashboardIndex = (global.db.allDashBoardData || global.db.dashBoardData || []).findIndex(item => item.email == dashboard.email);
 				if (dashboardIndex === -1) {
 					await dashBoardModel.create(dashboard, { transaction });
 				}
@@ -174,7 +174,7 @@ async function syncDashBoardData(message, dashBoardModel, getLang) {
 			}
 		});
 		const allDashBoardData = await dashBoardModel.findAll();
-		global.db.dashBoardData = allDashBoardData.map(dashboard => dashboard.get({ plain: true }));
+		global.db.allDashBoardData = allDashBoardData.map(dashboard => dashboard.get({ plain: true }));
 		return message.reply(getLang("successDashboard"));
 	}
 	catch (err) {

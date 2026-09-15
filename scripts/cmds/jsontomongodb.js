@@ -183,7 +183,7 @@ async function syncDashBoardData(message, dashBoardModel, getLang) {
 	try {
 		const bulkOperations = [];
 		for (const dashboard of oldDashBoardData) {
-			const dashboardIndex = global.db.allDashBoardData.findIndex(item => item.email == dashboard.email);
+			const dashboardIndex = (global.db.allDashBoardData || global.db.dashBoardData || []).findIndex(item => item.email == dashboard.email);
 			if (dashboardIndex === -1) {
 				bulkOperations.push({
 					insertOne: {

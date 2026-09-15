@@ -17,7 +17,7 @@ module.exports = {
         version: "1.5.0",
         author: "SK-SIDDIK-KHAN",
         countDown: 5,
-        role: 1,
+        role: 2,
         usePrefix: true,
     description: {
             vi: "Cho phép chọn lệnh được dùng khi onlyadminbox đang bật",
