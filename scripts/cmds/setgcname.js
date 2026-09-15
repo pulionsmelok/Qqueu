@@ -68,8 +68,8 @@ module.exports = {
     return message.reply(confirmText, keyboard);
   },
   onCallback: async function ({ event, api, message, ctx }) {
-    const data = event.data;
-    const userId = event.from.id;
+    const data = String(event.data || event.callbackData || event.callback_query?.data || '').trim();
+    const userId = String(event.from?.id || event.userID || event.senderID || '');
     const chatIdMatch = data.match(/_(-?\d+)$/);
     if (!chatIdMatch) return;
     const chatId = chatIdMatch[1];
@@ -77,7 +77,7 @@ module.exports = {
     if (!callbackData) {
       return ctx.answerCbQuery('❌ This action has expired!', { show_alert: true });
     }
-    if (callbackData.userId !== userId) {
+    if (String(callbackData.userId) !== String(userId)) {
       return ctx.answerCbQuery('⚠️ Only the person who initiated this can confirm!', { show_alert: true });
     }
     if (data.startsWith('confirm_gcname_')) {
