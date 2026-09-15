@@ -1,4 +1,4 @@
-const DEFAULT_PATH = "data.ignoreCommanToOnlyAdminBox";
+const DEFAULT_PATH = "data.ignoreCommandToOnlyAdminBox";
 
 function resolveCommand(name) {
 	const key = String(name || "").trim().toLowerCase();
