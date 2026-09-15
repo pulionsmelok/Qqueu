@@ -152,7 +152,7 @@ function isBannedOrOnlyAdmin(userData, threadData, senderID, threadID, isGroup, 
 		if (
 			threadData.data.onlyAdminBox === true
 			&& !(threadData.adminIDs || []).some(item => String(item && typeof item === "object" ? (item.id ?? item.userID ?? "") : item) === String(senderID))
-			&& !(threadData.data.ignoreCommanToOnlyAdminBox || []).includes(commandName)
+			&& !(threadData.data.ignoreCommandToOnlyAdminBox || []).includes(commandName)
 		) {
 			if (!silent && !threadData.data.hideNotiMessageOnlyAdminBox)
 				message.reply(getText("onlyAdminBox", null, null, null, lang));
